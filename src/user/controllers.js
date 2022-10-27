@@ -1,5 +1,7 @@
 const User = require("./model");
 
+// Create endpoint that finds all users and returns
+
 // create user profile
 exports.createUser = async (req, res) => {
   try {

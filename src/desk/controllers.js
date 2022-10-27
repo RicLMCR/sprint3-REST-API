@@ -31,9 +31,21 @@ exports.updateDesk = async (req, res) => {
   //     console.log("This booking will be created");
   //     res.send({ message: "created booking" });
   //   }
-  // add booking to booking array
+
   try {
+    const bookingID = req.body.bookings.bookingID;
+    const existingBook = await DeskBook.find({
+      deskname: req.body.deskname,
+    });
+
+    //this is an array of existing bookings on a desk
+    console.log(existingBook[0].bookings);
+
+    //find if bookingid exists in above array array.find method?
+    //if bookingid exists return error, else continue with normal flow
     const deskName = req.body.deskname;
+
+    //add booking to array
     const newBook = await DeskBook.updateOne(
       { deskname: deskName },
       {
