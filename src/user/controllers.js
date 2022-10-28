@@ -1,8 +1,6 @@
 const User = require("./model");
 
-// Create endpoint that finds all users and returns
-
-// create user profile
+// create user profile (ADMIN ONLY)
 exports.createUser = async (req, res) => {
   try {
     const userObj = {
@@ -17,7 +15,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-//locate user via username
+//locate user via username (NOT ACTIVE)
 exports.findUser = async (req, res) => {
   try {
     const users = await User.find({ username: req.body.username });
@@ -25,5 +23,16 @@ exports.findUser = async (req, res) => {
   } catch (error) {
     console.log(`findUser error: ${error}`);
     res.send("User does not exist");
+  }
+};
+
+//find and return all users
+exports.findAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find({});
+    res.send(allUsers);
+    console.log(`all users are: ${allUsers}`);
+  } catch (error) {
+    console.log(`find all users error: ${error}`);
   }
 };
